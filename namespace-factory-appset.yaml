@@ -22,10 +22,9 @@ spec:
         repoURL: https://github.com/itayherzberg/gitops-namespace-factory
         targetRevision: HEAD
         path: charts/namespace-factory
-        
         helm:
           valueFiles:
-          - '/{{path}}'
+          - '{{path}}'
 
       destination:
         server: https://kubernetes.default.svc
