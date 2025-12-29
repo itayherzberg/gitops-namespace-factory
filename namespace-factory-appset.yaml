@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: namespace-factory
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/itayherzberg/gitops-namespace-factory
+      revision: HEAD
+      files:
+      - path: "tenants/*.yaml"
+
+  template:
+    metadata:
+      # The App name will be same as the tenant's file name
+      name: '{{path.basenameNormalized}}'
+    spec:
+      project: default
+
+      source:
+        repoURL: https://github.com/itayherzberg/gitops-namespace-factory
+        targetRevision: HEAD
+        path: charts/namespace-factory
+        
+        helm:
+          valueFiles:
+          - '/{{path}}'
+
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd 
+
+      syncPolicy:
+        automated:
+          prune: true      
+          selfHeal: true
