@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/itayherzberg/gitops-namespace-factory
       revision: HEAD
       files:
-      - path: "tenants/*.yaml"
+      - path: tenants/*.yaml
 
   template:
     metadata:
@@ -24,7 +24,7 @@ spec:
         path: charts/namespace-factory
         helm:
           valueFiles:
-          - '{{path}}'
+          - '../{{path}}'
 
       destination:
         server: https://kubernetes.default.svc
