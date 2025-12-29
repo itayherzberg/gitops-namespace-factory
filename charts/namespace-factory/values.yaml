@@ -1,0 +1,26 @@
+# Tenant Info (Must be provided) 
+namespace: ""
+owner: ""
+environment: ""
+
+# Optional Additional Labels (Default to empty)
+customLabels: {}
+
+# Default Quota
+quota:
+  cpuRequests: '1'
+  cpuLimits: '2'
+  memoryRequests: 1Gi
+  memoryLimits: 2Gi
+
+# Default LimitRange
+limits:
+  defaultCpu: 500m
+  defaultMemory: 512Mi
+  defaultRequestCpu: 200m
+  defaultRequestMemory: 256Mi
+
+# RBAC (Must be provided)
+rbac:
+  adminGroup: ""
+  viewGroup: ""
