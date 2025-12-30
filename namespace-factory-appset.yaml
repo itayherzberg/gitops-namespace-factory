@@ -22,8 +22,7 @@ spec:
         path: charts/namespace-factory
         helm:
           valueFiles:
-          # - '../../tenants/{{ path.filename }}'
-          - '{{ path.filename }}'
+          - '../../tenants/{{ path.filename }}'
 
       destination:
         server: https://kubernetes.default.svc
