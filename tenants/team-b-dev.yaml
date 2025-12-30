@@ -1,6 +1,6 @@
-namespace: team-b-dev
+namespace: team-b-prod
 owner: team-b
-environment: dev
+environment: prod
 
 customLabels:
   department: devops
