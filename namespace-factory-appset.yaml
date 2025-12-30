@@ -9,28 +9,26 @@ spec:
       repoURL: https://github.com/itayherzberg/gitops-namespace-factory
       revision: HEAD
       files:
-      - path: tenants/*.yaml
+      - path: "tenants/*.yaml"
 
   template:
     metadata:
-      # The App name will be same as the tenant's file name
-      name: '{{path.basenameNormalized}}'
+      name: '{{ namespace }}'  
     spec:
       project: default
-
       source:
         repoURL: https://github.com/itayherzberg/gitops-namespace-factory
         targetRevision: HEAD
         path: charts/namespace-factory
         helm:
           valueFiles:
-          - '../{{path}}'
+          - '../../tenants/{{ path.filename }}'
 
       destination:
         server: https://kubernetes.default.svc
-        namespace: argocd 
+        namespace: argocd
 
       syncPolicy:
         automated:
-          prune: true      
+          prune: true
           selfHeal: true

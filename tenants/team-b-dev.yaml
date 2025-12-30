@@ -1,0 +1,22 @@
+namespace: team-b-dev
+owner: team-b
+environment: dev
+
+customLabels:
+  department: devops
+
+quota:
+  cpuRequests: '2'
+  cpuLimits: '3'
+  memoryRequests: 1Gi
+  memoryLimits: 4Gi
+
+limits:
+  defaultCpu: 100m
+  defaultMemory: 256Mi
+  defaultRequestCpu: 100m
+  defaultRequestMemory: 128Mi
+
+rbac:
+  adminGroup: team-b-admins
+  viewGroup: team-b-viewers
