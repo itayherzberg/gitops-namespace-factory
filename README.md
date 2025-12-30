@@ -34,17 +34,28 @@ kubectl apply -f bootstrap.yaml
 To provision a new environment, simply create a file in `tenants/` (e.g., `team-b.yaml`) and push to Git:
 
 ```yaml
-namespace: team-b-dev
-owner: team-b
+namespace: team-a-dev
+owner: team-a
 environment: dev
+
+customLabels:  # Optional
+  department: devops
+
 quota:
   cpuRequests: '4'
   cpuLimits: '8'
   memoryRequests: 8Gi
   memoryLimits: 16Gi
+
+limits:
+  defaultCpu: 500m
+  defaultMemory: 512Mi
+  defaultRequestCpu: 200m
+  defaultRequestMemory: 256Mi
+
 rbac:
-  adminGroup: team-b-admins
-  viewGroup: team-b-viewers
+  adminGroup: team-a-admins
+  viewGroup: team-a-viewers
 ```
 
 Argo CD will automatically detect the file and provision the isolated namespace with all security controls.
